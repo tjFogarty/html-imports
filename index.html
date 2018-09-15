@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Website Starter</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="import" id="site-header" href="partials/site-header.html">
+  <link rel="import" id="primary-nav" href="components/navigation/primary-nav.html">
+  <link rel="import" id="hero" href="components/hero.html">
+  <link rel="import" id="button" href="components/button.html">
+  <link rel="import" id="touchpoint" href="components/touchpoint.html">
+  <link rel="import" id="footer" href="components/footer.html">
+  
+  <link href="css/tailwind.min.css" rel="stylesheet">
+</head>
+
+  <div data-import="site-header"></div>
+  
+  <div data-import="hero"></div>
+  
+  <div class="container mx-auto py-10">
+    <ul class="list-reset md:flex mb-8 md:mb-0">
+      <li class="md:w-1/3 mb-10 md:mb-0 px-2 md:pl-0">
+        <div data-import="touchpoint"></div>
+      </li>
+      <li class="md:w-1/3 mb-10 md:mb-0 px-2">
+        <div data-import="touchpoint"></div>
+      </li>
+      <li class="md:w-1/3 mb-10 md:mb-0 px-2 md:pr-0">
+        <div data-import="touchpoint"></div>
+      </li>
+    </ul>
+  </div>
+  
+  <div data-import="footer"></div>
+  
+  <script>
+    // check for support
+    if ('import' in document.createElement('link')) {
+      let imports = document.querySelectorAll('link[rel="import"]')
+      
+      imports.forEach(htmlImport => {
+        let id = htmlImport.getAttribute('id'), // we'll use this to identify where to import into our document
+            content = htmlImport.import.querySelector('body *'), // grab the contents of the import
+            domTemplate = document.querySelectorAll(`[data-import="${id}"]`) // find the spots to put it in
+            
+        domTemplate.forEach(el => {
+          // need to clone the content first, otherwise for more than one occurance it'll only show once
+          // like the touchpoints, it would only insert the last one
+          // cloneNode(true) is a deep clone, so it clones the children as well
+          el.parentNode.replaceChild(content.cloneNode(true), el)
+        })
+      });
+    } else {
+      console.error('HTML Import support is required - https://caniuse.com/#search=html%20import')
+    }
+  </script>
+<body>
+</body>
+</html>
