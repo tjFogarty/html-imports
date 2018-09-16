@@ -16,7 +16,7 @@
   <link href="css/tailwind.min.css" rel="stylesheet">
 </head>
 
-  <div class="hidden no-support h-screen flex flex-col justify-center align-start bg-yellow-lightest">
+  <div style="display: none;" class="no-support h-screen flex flex-col justify-center align-start bg-yellow-lightest">
     <div class="container mx-auto">
       <h1 class="text-4xl mb-4">HTML Imports not supported</h1>
       <p>See <a href="https://caniuse.com/#search=html%20import" target="_blank" rel="noopener noreferrer">caniuse.com</a> for supported browsers.</p>
@@ -62,7 +62,7 @@
       });
     } else {
       let noSupport = document.querySelector('.no-support')
-      noSupport.classList.remove('hidden')
+      noSupport.style.display = ''
     }
   </script>
 <body>
